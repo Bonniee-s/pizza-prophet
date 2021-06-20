@@ -33,6 +33,12 @@ const pizza = {
 	]
 };
 
+const randomElement = (array) => {
+	const randomIndex = Math.floor(Math.random() * array.length);
+	return array[randomIndex];
+}
+
+
 // listen for a form submit.
 //const $form = $('form');
 //$form.on('submit') in jquery
@@ -44,7 +50,23 @@ form.addEventListener('submit', e => {
 	const sizeSelected = document.querySelector('input[name=size]:checked').value;
 	const priceSelected = document.querySelector('input[name=price]:checked').value;
 	console.log(sizeSelected, priceSelected);
+
+	//use radio input values to look through pizza object
+	const sizePizzaList = pizza[sizeSelected];
+	console.log(sizePizzaList);
+
+	const withinPricePizzaList = sizePizzaList.filter((pizzaPlace) => {
+		console.log(pizzaPlace);
+		if (pizzaPlace.price === priceSelected) {
+			return true;
+		} else { 
+			return false;
+		}
+
+	});
+	console.log(withinPricePizzaList);
 	
+	const finalPizzaPlace = randomElement(withinPricePizzaList);
+	console.log("FINAL: ", finalPizzaPlace);
 })
-//use radio input values to look through pizza object
 //display the matching pizza joint to you 
